@@ -1,0 +1,8 @@
+<x-layouts.app>
+    <div class="eyebrow">Панель управления</div><div class="section-head"><div><h1 class="page-title">Желания<span style="color:var(--green)">.</span></h1><p class="page-subtitle">Создавай, редактируй и упорядочивай список.</p></div><a class="btn btn-primary" href="{{ route('admin.wishes.create') }}">＋ Добавить желание</a></div>
+    <nav class="admin-tabs"><a class="active" href="{{ route('admin.wishes.index') }}">Желания</a><a href="{{ route('admin.categories.index') }}">Категории</a><a href="{{ route('admin.statuses.index') }}">Статусы</a></nav>
+    <div class="table-wrap"><table><thead><tr><th>Желание</th><th>Категория</th><th>Статус</th><th>Цена</th><th style="text-align:right">Действия</th></tr></thead><tbody>
+    @forelse($wishes as $wish)<tr><td><strong>{{ $wish->name }}</strong></td><td>{{ $wish->category?->name ?? '—' }}</td><td><span class="tag tag-muted">{{ $wish->status?->name ?? '—' }}</span></td><td>{{ $wish->price !== null ? number_format($wish->price,2,',',' ').' ₽' : '—' }}</td><td><div class="table-actions"><a class="btn btn-outline btn-sm" href="{{ route('admin.wishes.edit',$wish) }}">Изменить</a><form method="POST" action="{{ route('admin.wishes.destroy',$wish) }}" onsubmit="return confirm('Удалить это желание?')">@csrf @method('DELETE')<button class="btn btn-danger btn-sm" type="submit">Удалить</button></form></div></td></tr>
+    @empty<tr><td colspan="5" style="text-align:center;color:var(--muted);padding:42px">Список пока пуст. Добавь первое желание.</td></tr>@endforelse</tbody></table></div>
+    @if(method_exists($wishes,'links'))<div class="pagination">{{ $wishes->links() }}</div>@endif
+</x-layouts.app>

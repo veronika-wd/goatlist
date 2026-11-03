@@ -1,0 +1,2 @@
+@props(['label' => null, 'name', 'options' => [], 'value' => ''])
+<div class="field mb-4">@if($label)<label for="{{ $name }}">{{ $label }}</label>@endif<select class="control" name="{{ $name }}" id="{{ $name }}" {{ $attributes }}>@foreach($options as $key => $optionLabel)<option value="{{ $key }}" @selected((string)$key === (string)old($name,$value))>{{ $optionLabel }}</option>@endforeach</select>@error($name)<p style="color:var(--danger);font-size:12px;margin-top:5px">{{ $message }}</p>@enderror</div>

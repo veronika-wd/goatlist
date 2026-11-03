@@ -1,0 +1,1 @@
+<x-layouts.app><div class="auth-wrap"><div class="card" style="text-align:center"><div class="eyebrow">GOATLIST</div><h1 class="page-title">Список твоих желаний.</h1><p class="page-subtitle" style="margin-bottom:22px">Собери всё, о чём мечтаешь, в одном месте.</p><a class="btn btn-primary" href="{{ route('wishes.index') }}">Открыть список</a></div></div></x-layouts.app>

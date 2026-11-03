@@ -1,0 +1,6 @@
+<x-layouts.app><div class="auth-wrap"><div class="card auth-card"><div class="auth-brand"><a href="{{ route('wishes.index') }}" class="brand"><span class="brand-mark">g.</span><span>GOATLIST</span></a></div><h1>С возвращением</h1><p class="auth-hint">Войди, чтобы управлять своим списком желаний.</p>@if($errors->any())<div class="alert alert-error">Проверь введённые данные.</div>@endif<form method="POST" action="{{ route('login') }}">@csrf
+            <x-input label="Электронная почта" name="email" type="email" required autofocus autocomplete="username" />
+            <x-input label="Пароль" name="password" type="password" required autocomplete="current-password" />
+            <label class="check-row"><input type="checkbox" name="remember"><span>Запомнить меня</span></label>
+            <button class="btn btn-primary" style="width:100%" type="submit">Войти в аккаунт</button>
+        </form><p class="auth-foot">Ещё нет аккаунта? <a class="text-link" href="{{ route('register') }}">Зарегистрироваться</a></p></div></div></x-layouts.app>
