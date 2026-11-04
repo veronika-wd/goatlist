@@ -16,7 +16,7 @@ class AdminMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (!$request->login === 'admin' && !Hash::check($request->password, 'myGoatWishList#3422')) {
+        if ($request->login !== 'admin' && !Hash::check($request->password, 'myGoatWishList#3422')) {
             return redirect()->back()->withErrors([
                 'auth' => 'You are not admin',
             ]);
