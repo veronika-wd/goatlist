@@ -18,7 +18,7 @@ class AdminMiddleware
     public function handle(Request $request, Closure $next): Response
     {
         if (!Auth::user()->is_admin) {
-            return redirect()->back();
+            return redirect()->route('wishes.index');
         }
 
         return $next($request);
