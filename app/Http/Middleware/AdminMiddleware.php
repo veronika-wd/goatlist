@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -16,10 +17,8 @@ class AdminMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if ($request->email !== 'admin@mail.ru' && !Hash::check($request->password, Hash::make('myGoatWishList#3422'))) {
-            return redirect()->back()->withErrors([
-                'auth' => 'You are not admin',
-            ]);
+        if (!Auth::user()->is_admin) {
+            return redirect()->back();
         }
 
         return $next($request);
