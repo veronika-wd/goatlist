@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Middleware\AdminMiddleware;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WishController;
 use App\Http\Controllers\CategoryController;
@@ -17,7 +18,7 @@ Route::get('/dashboard', function () {
 // ----------------------------------------
 
 // Админка (только для авторизованных)
-Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () {
+Route::middleware([AdminMiddleware::class])->prefix('admin')->name('admin.')->group(function () {
 
     // Дашборд админки (если нужен отдельный, или можно оставить редирект выше)
     Route::get('/', function () {
